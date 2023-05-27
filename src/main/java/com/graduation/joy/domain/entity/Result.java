@@ -1,15 +1,16 @@
 package com.graduation.joy.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Result {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String studentId;
     private boolean result;
     @ManyToOne
