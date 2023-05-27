@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AESEncoder {
 
-    public static String encryptTestCaseList(String secretKey, List<TestCaseResponse> data) throws Exception{
+    public static List<List<List<String>>>  encryptTestCaseList(String secretKey, List<TestCaseResponse> data) throws Exception{
         SecretKeySpec newKey = new SecretKeySpec(secretKey.getBytes("UTF-8"), "AES"); // [암호화 알고리즘]
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE,newKey);
@@ -22,7 +22,7 @@ public class AESEncoder {
             encryptedData.add(encryped);
         }
 
-        return encryptedData.toString();
+        return encryptedData;
 
     }
 
