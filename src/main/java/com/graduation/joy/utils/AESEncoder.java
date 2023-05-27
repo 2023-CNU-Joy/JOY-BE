@@ -1,10 +1,13 @@
 package com.graduation.joy.utils;
 
 import com.graduation.joy.domain.dto.TestCaseResponse;
+
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +15,10 @@ import java.util.List;
 public class AESEncoder {
 
     public static List<List<List<String>>>  encryptTestCaseList(String secretKey, List<TestCaseResponse> data) throws Exception{
+        AlgorithmParameterSpec ivSpec = new IvParameterSpec(new byte[16]);
         SecretKeySpec newKey = new SecretKeySpec(secretKey.getBytes("UTF-8"), "AES"); // [암호화 알고리즘]
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE,newKey);
+        cipher.init(Cipher.ENCRYPT_MODE,newKey,ivSpec);
 
         List<List<List<String>>> encryptedData = new ArrayList<>();
         for(TestCaseResponse testCaseResponse : data){
