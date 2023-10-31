@@ -1,5 +1,6 @@
 package com.graduation.joy.service;
 
+import com.graduation.joy.domain.dto.ProblemRequest;
 import com.graduation.joy.domain.dto.ProblemResponse;
 import com.graduation.joy.domain.entity.Problem;
 import com.graduation.joy.repository.ProblemRepository;
@@ -18,5 +19,15 @@ public class ProblemService {
         return allProblem.stream()
                 .map(ProblemResponse::from)
                 .collect(Collectors.toList());
+    }
+
+    public void makeProblem(ProblemRequest problemRequest) {
+        Problem problem = Problem.builder()
+                .title(problemRequest.getTitle())
+                .content(problemRequest.getContent())
+                .exampleTestInput(problemRequest.getExampleTestInput())
+                .exampleTestOut(problemRequest.getExampleTestOutput())
+                .build();
+        problemRepository.save(problem);
     }
 }
