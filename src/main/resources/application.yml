@@ -14,3 +14,6 @@ spring:
     hibernate.ddl-auto: validate
 
 secretKey : 1234
+originalURL : http://ec2-43-202-43-121.ap-northeast-2.compute.amazonaws.com:8080
+clientId : temp
+clientSecret : secret
